@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/bun": "latest",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf build tmp && echo 'Done.'",
+    "dev": "bun --hot backend/src/index.ts",
+    "format": "prettier --write \"backend/src/**/*.ts\" --config ./prettier.config.mjs",
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --max-warnings 0",
+    "start": "bun backend/src/index.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.16.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.16.2"
+  }
+}
