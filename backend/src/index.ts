@@ -14,8 +14,11 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/message', messageRoutes);
+app.use('/api/messages', messageRoutes);
 
 app.listen(port, () => {
   console.log('Listening on port ' + port + ', try it out: http://localhost:' + port);
 });
+
+// TODO: Add socket.io to the server
+// TODO: Configure this server for the deployment

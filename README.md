@@ -2,7 +2,7 @@
 
 ![PERN](https://imgur.com/ISPGqoB)
 
-Para instalar dependencias:
+### Para instalar dependencias:
 
 ```bash
 bun install
@@ -17,7 +17,7 @@ PORT=...
 ```
 
 
-Ejecuta el proyecto:
+### Ejecuta el proyecto:
 
 ```bash
 bun run dev
