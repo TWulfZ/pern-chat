@@ -39,7 +39,7 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["backend/src/**/*", "frontend/src/hooks"], // Specifies which files to include when compiling your project.
+  "include": ["backend/src/**/*"],  // Specifies which files to include when compiling your project.
   "exclude": ["node_modules", "**/*.spec.ts", "frontend"] // Specifies which files to exclude when compiling your project.
 }
 
