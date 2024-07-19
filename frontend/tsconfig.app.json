@@ -17,6 +17,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Base path */
+    "baseUrl": "./src",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"],
+      "@sidebar/*": ["components/sidebar/*"],
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
