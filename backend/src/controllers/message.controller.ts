@@ -1,6 +1,7 @@
 import prisma from '@db/prisma.ts';
 import logger from '@managers/logger.manager.ts';
 import type { Request, Response } from 'express';
+import { getReciverSocketId, io } from '@services/socket/socket.ts';
 
 export const getMessages = async (req: Request, res: Response) => {
 	try {
@@ -79,6 +80,13 @@ export const sendMessage = async (req: Request, res: Response) => {
           },
         },
       });
+    }
+
+    const reciverSocketId = getReciverSocketId(reciverId);
+
+    if (reciverSocketId) {
+      io.to(reciverSocketId).emit('newMessage', newMessage);
+      logger.info('New message sent to user: ', reciverId);
     }
 
     res.status(201).json(newMessage);

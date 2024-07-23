@@ -24,6 +24,9 @@
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@sidebar/*": ["components/sidebar/*"],
+      "@context/*": ["context/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"],
     },
 
     /* Linting */
