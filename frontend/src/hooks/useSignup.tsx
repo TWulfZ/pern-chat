@@ -32,7 +32,6 @@ const useSignup = () => {
 
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(error.message);
         toast.error(error.message);
       }
     } finally {

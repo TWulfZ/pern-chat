@@ -25,7 +25,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-w-96 mx-auto shadow-sm shadow-black'>
+    <div className='flex flex-col items-center justify-center min-w-96 mx-auto p-2'>
       {/* LOGO */}
       <div className='no-drag absolute inset-y-10 inset-x-12 flex gap-2 w-20 h-1'>
         <img src='/nyacord.svg' alt='nyacord' className='w-8 h-8 no-drag' />

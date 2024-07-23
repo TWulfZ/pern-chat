@@ -27,6 +27,9 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^5.16.2"
+    "prisma": "^5.16.2",
+    "socket.io": "^4.7.5",
+    "winston": "^3.13.1",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }

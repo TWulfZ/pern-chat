@@ -19,6 +19,9 @@
       "@utils/*": ["utils/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
+      "@managers/*": ["managers/*"],
+      "@services/*": ["services/*"],
+      "@winston/*": ["services/winston/*"],
     },
 
     // Bundler mode
