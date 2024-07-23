@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import prisma from '@db/prisma.ts';
 import bycriptjs from 'bcryptjs';
 import generateToken from '@utils/generateToken.ts';
+import logger from '@managers/logger.manager.ts';
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -34,7 +35,7 @@ export const signup = async (req: Request, res: Response) => {
         username: username,
         password: hashedPassword,
         gender,
-        profilePic: gender === 'boy' ? boyProfilePic : girlProfilePic,
+        profilePic: gender === 'male' ? boyProfilePic : girlProfilePic,
       },
     });
 
@@ -52,8 +53,7 @@ export const signup = async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Invalid user data' });
     }
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in signup controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };
@@ -82,8 +82,7 @@ export const login = async (req: Request, res: Response) => {
     });
 
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in login controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };
@@ -93,8 +92,7 @@ export const logout = (req: Request, res: Response) => {
     res.cookie('jwt', '', { maxAge: 0 })
     res.status(200).json({ message: 'Sesión cerrada' });
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in logout controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };
@@ -114,8 +112,7 @@ export const getMe = async (req: Request, res: Response) => {
     })
 
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in getMe controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };

@@ -1,36 +1,36 @@
 import prisma from '@db/prisma.ts';
+import logger from '@managers/logger.manager.ts';
 import type { Request, Response } from 'express';
 
-export const getMessage = async (req: Request, res: Response) => {
-  try {
-    const { id: userToChatId } = req.params;
-    const senderId = req.user.id;
+export const getMessages = async (req: Request, res: Response) => {
+	try {
+		const { id: userToChatId } = req.params;
+		const senderId = req.user.id;
 
-    const conversation = await prisma.conversation.findFirst({
-      where: {
-        paricipantsId: {
-          hasEvery: [senderId, userToChatId],
-        },
-      },
-      include: {
-        messages: {
-          orderBy: {
-            createAt: 'asc',
-          },
-        },
-      },
-    });
+		const conversation = await prisma.conversation.findFirst({
+			where: {
+				participantIds: {
+					hasEvery: [senderId, userToChatId],
+				},
+			},
+			include: {
+				messages: {
+					orderBy: {
+						createdAt: "asc",
+					},
+				},
+			},
+		});
 
-    if (!conversation) {
-      return res.status(200).json([]);
-    }
+		if (!conversation) {
+			return res.status(200).json([]);
+		}
 
-    res.status(200).json(conversation);
-  } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
-    res.status(500).json({ error: 'Error interno con el servidor' });
-  }
+		res.status(200).json(conversation.messages);
+	} catch (error: any) {
+		console.error("Error in getMessages: ", error.message);
+		res.status(500).json({ error: "Internal server error" });
+	}
 };
 
 export const sendMessage = async (req: Request, res: Response) => {
@@ -41,7 +41,7 @@ export const sendMessage = async (req: Request, res: Response) => {
 
     let conversation = await prisma.conversation.findFirst({
       where: {
-        paricipantsId: {
+        participantIds: {
           hasEvery: [senderId, reciverId],
         },
       },
@@ -52,7 +52,7 @@ export const sendMessage = async (req: Request, res: Response) => {
       // si la conversacion no existe
       conversation = await prisma.conversation.create({
         data: {
-          paricipantsId: [senderId, reciverId],
+          participantIds: [senderId, reciverId],
         },
       });
     }
@@ -83,8 +83,7 @@ export const sendMessage = async (req: Request, res: Response) => {
 
     res.status(201).json(newMessage);
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in sendMessage controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };
@@ -107,8 +106,7 @@ export const getUsersForSidebar = async (req: Request, res: Response) => {
     });
     res.status(200).json(users);
   } catch (error: any) {
-    // TODO: Add Winston logs
-    console.log('Error in signup controller: ', error.message);
+    logger.error('Error in getUsersForSidebar controller: ', error.message);
     res.status(500).json({ error: 'Error interno con el servidor' });
   }
 };

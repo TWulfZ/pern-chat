@@ -4,9 +4,11 @@ import CookieParser from 'cookie-parser';
 import authRoutes from '@routes/auth.route.ts';
 import messageRoutes from '@routes/message.route.ts';
 import cookieParser from 'cookie-parser';
+import logger from '@managers/logger.manager.ts';
 
 const app = express();
-const port = process.env.PORT!;
+const PORT = process.env.PORT || 5001;
+const SERVER_URL = process.env.SERVER_URL;
 
 // Middleware
 app.use(cookieParser());
@@ -16,9 +18,14 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
-app.listen(port, () => {
-  console.log('Listening on port ' + port + ', try it out: http://localhost:' + port);
-});
+app.listen(PORT, () => {
+  const envMessage = 
+    process.env.NODE_ENV !== 'development'
+    ? `Server listening at ${SERVER_URL}`
+    : `Server listening at http://localhost:${PORT}`;
+
+  logger.info(envMessage);
+  });
 
 // TODO: Add socket.io to the server
 // TODO: Configure this server for the deployment

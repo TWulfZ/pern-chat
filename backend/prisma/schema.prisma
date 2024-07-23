@@ -33,8 +33,8 @@ model Conversation {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
-  paricipantsId String[]
-  paricipants User[]
+  participantIds String[]
+  participants User[]
 
   messageIds String[]
   messages Message[]
@@ -49,7 +49,7 @@ model Message {
   sender User @relation(fields: [senderId], references: [id])
 
   body String
-  createAt DateTime @default(now())
+  createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
 
