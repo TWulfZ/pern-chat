@@ -1,25 +1,24 @@
 {
-  "name": "backend",
-  "module": "index.ts",
+  "name": "nyacord",
+  "version": "1.0.0",
+  "module": "index.js",
   "type": "module",
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/bun": "latest",
-    "@types/cookie-parser": "^1.4.7",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6"
-  },
   "scripts": {
-    "build": "tsc && npm install && prisma generate --schema=./backend/prisma/schema.prisma && npm install --prefix frontend && npm run build --prefix frontend",
-		"start": "node backend/dist/src/index.js",
+    "build": "tsc && bun install && prisma generate --schema=./backend/prisma/schema.prisma && cd frontend && bun install && bun run build && cd ..",
+    "start": "node backend/dist/src/index.js",
     "clean": "rm -rf build tmp && echo 'Done.'",
     "dev": "bun --hot backend/src/index.ts",
     "format": "prettier --write \"backend/src/**/*.ts\" --config ./prettier.config.mjs",
     "lint:fix": "eslint . --fix",
     "lint": "eslint . --max-warnings 0"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/bun": "latest",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@prisma/client": "^5.16.2",
@@ -27,7 +26,6 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "frontend": "^2.0.0-alpha.4",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.16.2",
     "socket.io": "^4.7.5",
