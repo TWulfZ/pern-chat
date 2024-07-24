@@ -2,7 +2,6 @@
 	"compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
-    "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"],
     "module": "commonjs",
     "moduleDetection": "force",
@@ -34,6 +33,8 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ES6",
+    "forceConsistentCasingInFileNames": true,
+    "preserveSymlinks": true
   },
 
   "include": ["backend/src/**/*"], // Specifies which files to include when compiling your project.
