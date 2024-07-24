@@ -7,7 +7,7 @@ import { useAuthContext } from 'context/AuthContext';
 // import { MessageCircle } from "lucide-react";
 
 const MessageContainer = () => {
-  const { messages, selectedConversation, setMessages, setSelectedConversation } = useConversation();
+  const { selectedConversation} = useConversation();
   return (
     <div className='w-full h-dvh sm:h-full flex flex-col'>
       {!selectedConversation ? (

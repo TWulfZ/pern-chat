@@ -1,6 +1,6 @@
 import express from 'express';
-import { getMe, login, logout, signup } from '@controllers/auth.controller.ts';
-import protectRoute from '@middlewares/protect.route.ts';
+import { getMe, login, logout, signup } from '@controllers/auth.controller';
+import protectRoute from '@middlewares/protect.route';
 
 const router = express.Router();
 

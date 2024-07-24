@@ -1,7 +1,7 @@
 import { Server } from 'socket.io';
 import http from 'http';
 import express from 'express';
-import logger from '@managers/logger.manager.ts';
+//import logger from '@managers/logger.manager';
 
 const app = express();
 
@@ -23,7 +23,7 @@ const userSocketMap: {[key: string]: string} = {};
 io.on('connection', (socket) => {
   //logger.info('👤 a user connected', socket.id);
 
-  const userId = socket.handshake.query.userId as string;
+  const userId = socket.handshake.query['userId'] as string;
 
   if(userId) userSocketMap[userId] = socket.id;
   

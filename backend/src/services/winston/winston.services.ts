@@ -8,7 +8,7 @@ const logFormat = format.combine(
     timestamp({
       format: 'YYYY-MM-DD hh:mm:ss.SSS A',
     }),
-    printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
+    printf((info) => `[${info['timestamp']}] ${info.level}: ${info.message}`)
 );
 
 const fileRotateTransport = new DailyRotateFile({

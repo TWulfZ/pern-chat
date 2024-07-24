@@ -1,4 +1,4 @@
-import winstonService from "@winston/winston.services.ts";
+import winstonService from "@winston/winston.services";
 
 const logger = {
   debug: winstonService.debug.bind(winstonService),

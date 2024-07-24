@@ -1,17 +1,21 @@
 {
-  "compilerOptions": {
-    // Enable latest features
-    "target": "ES2020", // Specifies what version of ECMAScript the code should be compiled to.
-    "module": "NodeNext", // Specifies what module code should be generated.
-    "moduleResolution": "NodeNext", // Specifies how TypeScript should resolve module imports.
-    "outDir": "./backend/dist", // Redirect output structure to the directory.
-    "rootDir": "./backend",
-    "baseUrl": "./backend/src",
-    "esModuleInterop": true, // This will allow you to use default imports with CommonJS modules.
-    "lib": ["ESNext", "DOM"],
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
+	"compilerOptions": {
     "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM"],
+    "module": "commonjs",
+    "moduleDetection": "force",
+    "moduleResolution": "Node",
+    "noEmitHelpers": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+		"outDir": "./backend/dist", // Redirect output structure to the directory.
+		"rootDir": "./backend",
+    "baseUrl": "./backend/src",
     "paths": {
       "@controllers/*": ["controllers/*"],
       "@db/*": ["db/*"],
@@ -21,28 +25,18 @@
       "@models/*": ["models/*"],
       "@managers/*": ["managers/*"],
       "@services/*": ["services/*"],
-      "@winston/*": ["services/winston/*"],
+      "@winston/*": ["services/winston/*"]
     },
-
-    // Bundler mode
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
-    // Best practices
-    "strict": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "ES6",
+  },
 
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  },
-  "ts-node": {
-    "esm": true
-  },
-  "include": ["backend/src/**/*"],  // Specifies which files to include when compiling your project.
+  "include": ["backend/src/**/*"], // Specifies which files to include when compiling your project.
   "exclude": ["node_modules", "**/*.spec.ts", "frontend"] // Specifies which files to exclude when compiling your project.
 }
 

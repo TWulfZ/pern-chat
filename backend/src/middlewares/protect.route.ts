@@ -1,7 +1,7 @@
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 
 import type { Request, Response, NextFunction } from 'express';
-import prisma from '@db/prisma.ts';
+import prisma from '@db/prisma';
 
 interface DecodedToken extends JwtPayload {
   userId: string;
@@ -18,13 +18,13 @@ declare global {
 
 const protectRoute = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.cookies.jwt;
+    const token = req.cookies['jwt'];
 
     if (!token) {
       return res.status(401).json({ error: 'Sin autorización - No hay token' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as DecodedToken;
+    const decoded = jwt.verify(token, process.env['JWT_SECRET']!) as DecodedToken;
 
     if (!decoded) {
       return res.status(401).json({ error: 'Sin autorización - Token no válido' });

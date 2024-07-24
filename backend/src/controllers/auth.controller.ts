@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
-import prisma from '@db/prisma.ts';
+import prisma from '@db/prisma';
 import bycriptjs from 'bcryptjs';
-import generateToken from '@utils/generateToken.ts';
-import logger from '@managers/logger.manager.ts';
+import generateToken from '@utils/generateToken';
+import logger from '@managers/logger.manager';
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -87,7 +87,7 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (_req: Request, res: Response) => {
   try {
     res.cookie('jwt', '', { maxAge: 0 })
     res.status(200).json({ message: 'Sesión cerrada' });

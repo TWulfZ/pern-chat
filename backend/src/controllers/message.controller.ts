@@ -1,7 +1,7 @@
-import prisma from '@db/prisma.ts';
-import logger from '@managers/logger.manager.ts';
+import prisma from '@db/prisma';
+import logger from '@managers/logger.manager';
 import type { Request, Response } from 'express';
-import { getReciverSocketId, io } from '@services/socket/socket.ts';
+import { getReciverSocketId, io } from '@services/socket/socket';
 
 export const getMessages = async (req: Request, res: Response) => {
 	try {

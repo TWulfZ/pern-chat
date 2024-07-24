@@ -10,13 +10,13 @@
     "@types/jsonwebtoken": "^9.0.6"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && bun install && prisma generate --schema=./backend/prisma/schema.prisma && cd frontend && bun install && bun run build && cd ..",
+    "start": "node backend/dist/src/index.js",
     "clean": "rm -rf build tmp && echo 'Done.'",
     "dev": "bun --hot backend/src/index.ts",
     "format": "prettier --write \"backend/src/**/*.ts\" --config ./prettier.config.mjs",
     "lint:fix": "eslint . --fix",
-    "lint": "eslint . --max-warnings 0",
-    "start": "bun backend/src/index.ts"
+    "lint": "eslint . --max-warnings 0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -27,6 +27,7 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "frontend": "^2.0.0-alpha.4",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.16.2",
     "socket.io": "^4.7.5",

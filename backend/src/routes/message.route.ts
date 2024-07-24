@@ -1,5 +1,5 @@
-import { getMessages, getUsersForSidebar, sendMessage } from '@controllers/message.controller.ts';
-import protectRoute from '@middlewares/protect.route.ts';
+import { getMessages, getUsersForSidebar, sendMessage } from '@controllers/message.controller';
+import protectRoute from '@middlewares/protect.route';
 import express from 'express';
 
 const router = express.Router();

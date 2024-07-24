@@ -1,16 +1,17 @@
 import express from 'express';
-import CookieParser from 'cookie-parser';
-import authRoutes from '@routes/auth.route.ts';
-import messageRoutes from '@routes/message.route.ts';
+import authRoutes from '@routes/auth.route';
+import messageRoutes from '@routes/message.route';
 import cookieParser from 'cookie-parser';
-import logger from '@managers/logger.manager.ts';
-import { app, server } from '@services/socket/socket.ts';
+import logger from '@managers/logger.manager';
+import { app, server } from '@services/socket/socket';
 import dotenv from 'dotenv';
+
+import path from 'path';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5001;
-const SERVER_URL = process.env.SERVER_URL;
+const PORT = process.env['PORT'] || 5001;
+const __dirname = path.resolve();
 
 // Middleware
 app.use(cookieParser());
@@ -20,14 +21,13 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
+if (process.env['NODE_ENV'] === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/dist')));
+  app.get('*', (_req,res) =>{
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+  })
+}
+
 server.listen(PORT, () => {
-  const envMessage = 
-    process.env.NODE_ENV !== 'development'
-    ? `Server listening at ${SERVER_URL}`
-    : `Server listening at http://localhost:${PORT}`;
-
-  logger.info(envMessage);
+  logger.info(`Server listening at http://localhost:${PORT}`);
   });
-
-// TODO: Add socket.io to the server
-// TODO: Configure this server for the deployment
