@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types"],
+    "sourceMap": true,
+    "strict": true,
+    "lib": ["es2020"],
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@controllers/*": ["controllers/boards/*", "controllers/*"],
+      "@db/*": ["db/*"],
+      "@managers/*": ["managers/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@schemas/*": ["schemas/*"],
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"],
+      "@config/*": ["config/*"],
+      "@winston/*": ["services/winston/*"]
+    }
+  },
+  "tsc-alias":{
+    "resolveFullPaths": true,
+  },
+  "exclude": ["node_modules", "build", "logs"],
+  "include": ["src/**/*.ts", "src/@types/**/*"]
+}

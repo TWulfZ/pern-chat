@@ -13,7 +13,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 		"outDir": "./backend/dist", // Redirect output structure to the directory.
-		"rootDir": "./backend",
+		"rootDir": "./backend/src",
     "baseUrl": "./backend/src",
     "paths": {
       "@controllers/*": ["controllers/*"],
@@ -36,7 +36,9 @@
     "forceConsistentCasingInFileNames": true,
     "preserveSymlinks": true
   },
-
+	"tsc-alias":{
+    "resolveFullPaths": true,
+  },
   "include": ["backend/src/**/*"], // Specifies which files to include when compiling your project.
   "exclude": ["node_modules", "**/*.spec.ts", "frontend"] // Specifies which files to exclude when compiling your project.
 }
